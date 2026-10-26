@@ -4,19 +4,20 @@
 `import numpy as np`
 
 - num1
-    - num2
+  - num2
 
 1. first
 2. second
 
 - [x]
 - [ ]
-> reference
->> reference 2
+  > reference
+  >
+  > > reference 2
 
 ---
 
-***
+---
 
 ```mermaid
 graph LR
