@@ -1,5 +1,91 @@
 \documentclass{ctexart}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{cancel}
+
 \begin{document}
+
 f(x)在区间(0,1)上有定义, $\lim_{x \to 0^+}f(x)\,=\,0$,
 且$\lim_{x \to {0}^+}\frac{f(x)-f(\frac{x}{3})}{x}\,=\,0$. 证明: $\lim_{x\to 0^+}\frac{f(x)}{x}=0$.
+
+
+因为这里发生的是两件不同的事情：
+1. 先利用代数恒等式，让中间的函数值相消。
+2. 再利用三角不等式，把整个和式的绝对值放大为各项绝对值之和。
+我们把这两个步骤分开看。
+第一步：中间项为什么会消去？
+例如取 \(n=3\)，有：
+\[
+\begin{aligned}
+&f(x)-f\left(\frac{x}{3}\right)\\
++{}&f\left(\frac{x}{3}\right)-f\left(\frac{x}{9}\right)\\
++{}&f\left(\frac{x}{9}\right)-f\left(\frac{x}{27}\right).
+\end{aligned}
+\]
+
+将同类项整理：
+\[
+\begin{aligned}
+={}&f(x)
+-\underbrace{f\left(\frac{x}{3}\right)
++f\left(\frac{x}{3}\right)}_{0}\\
+&-\underbrace{f\left(\frac{x}{9}\right)
++f\left(\frac{x}{9}\right)}_{0}
+-f\left(\frac{x}{27}\right).
+\end{aligned}
+\]
+
+更准确地写成：
+\[
+\begin{aligned}
+={}&f(x)
+-\cancel{f\left(\frac{x}{3}\right)}
++\cancel{f\left(\frac{x}{3}\right)}\\
+&-\cancel{f\left(\frac{x}{9}\right)}
++\cancel{f\left(\frac{x}{9}\right)}
+-f\left(\frac{x}{27}\right)\\
+={}&f(x)-f\left(\frac{x}{27}\right).
+\end{aligned}
+\]
+
+这是普通的代数加减消去，与绝对值没有关系。
+第二步：取绝对值后为什么不再消去？
+现在对上面的恒等式取绝对值：
+\[
+\begin{aligned}
+&\left|f(x)-f\left(\frac{x}{27}\right)\right|\\
+={}&\left|\sum_{k=0}^{2}
+\left[
+f\left(\frac{x}{3^k}\right)
+-f\left(\frac{x}{3^{k+1}}\right)
+\right]\right|.
+\end{aligned}
+\]
+
+根据三角不等式：
+\[
+\begin{aligned}
+\leq{}&
+\left|f(x)-f\left(\frac{x}{3}\right)\right|\\
+&+\left|f\left(\frac{x}{3}\right)-f\left(\frac{x}{9}\right)\right|\\
+&+\left|f\left(\frac{x}{9}\right)-f\left(\frac{x}{27}\right)\right|.
+\end{aligned}
+\]
+
+注意：中间项只在取绝对值之前的代数求和中消去，取绝对值之后，每一项都变成了一个非负数，不能再相消。
+最重要的理解
+可以记住这个规律：
+\[
+\boxed{
+\left|\sum_{k=1}^{n}a_k\right|
+\leq \sum_{k=1}^{n}|a_k|
+}
+\]
+
+- 左边：先把所有项相加，再取绝对值。
+- 右边：每一项先取绝对值，再相加。
+本题恰恰是利用左边的望远镜式消去得到 \(f(x)-f(x/3^n)\)，再用右边的放缩控制它。
+
+这两个操作的先后顺序非常重要。
+
 \end{document}
